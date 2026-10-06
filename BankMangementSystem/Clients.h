@@ -11,4 +11,5 @@ struct ClientsData {
 	float Balance;
 
 };
+bool IsExistAccountNumber(string AccountNumber, vector <ClientsData>& vClients);
 vector <ClientsData> AddNewClient();

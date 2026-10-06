@@ -4,4 +4,4 @@
 using namespace std;
 
 string ConvertClientCardToLineString(ClientsData sClient, string Separator);
-void SaveClientDataToFile(vector <ClientsData> vClients);
+void SaveClientsDataToFile(vector <ClientsData> vClients);

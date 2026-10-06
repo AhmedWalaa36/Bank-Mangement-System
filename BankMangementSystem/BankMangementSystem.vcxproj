@@ -124,12 +124,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Clients.cpp" />
-    <ClCompile Include="FileManager.cpp" />
+    <ClCompile Include="File&amp;StringManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clients.h" />
-    <ClInclude Include="FileManager.h" />
+    <ClInclude Include="File&amp;StringManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

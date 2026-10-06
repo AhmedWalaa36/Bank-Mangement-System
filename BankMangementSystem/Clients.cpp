@@ -5,6 +5,19 @@ using namespace std;
 ClientsData sClient;
 
 
+bool IsExistAccountNumber(string AccountNumber, vector <ClientsData> &vClients){
+
+	for (ClientsData &client: vClients)
+	{
+		if (client.AccountNumber== AccountNumber)
+		{
+			cout << "Account Number " << AccountNumber << " Is Already Exist.";
+			return true;
+		}
+	}
+	return false;
+}
+
 vector <ClientsData> AddNewClient() {
 
 	cout << "Please Enter Client Information. \n\n";
@@ -15,6 +28,11 @@ vector <ClientsData> AddNewClient() {
 	{
 		cout << "Enter Client Account Number : ";
 		cin >> sClient.AccountNumber;
+		while (IsExistAccountNumber(sClient.AccountNumber, vCleints))
+		{
+			cout << "Enter another Account Number: ";
+			cin >> sClient.AccountNumber;
+		}
 		cout << "Enter Client Pin Code : ";
 		cin >> sClient.PinCode;
 		cout << "Enter Client Name : ";
@@ -33,3 +51,4 @@ vector <ClientsData> AddNewClient() {
 	return vCleints;
 
 }
+
