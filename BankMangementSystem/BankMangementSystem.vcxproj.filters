@@ -21,7 +21,7 @@
     <ClCompile Include="Clients.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FileManagement.cpp">
+    <ClCompile Include="File&amp;StringManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,7 @@
     <ClInclude Include="Clients.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FileManagement.h">
+    <ClInclude Include="File&amp;StringManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

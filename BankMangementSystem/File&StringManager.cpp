@@ -6,6 +6,7 @@ using namespace std;
 
 string FileName = "ClientFile.txt";
 
+
 string ConvertClientCardToLineString(ClientsData sClient,string Separator) {
 	
 	return	sClient.AccountNumber + Separator +
@@ -15,21 +16,25 @@ string ConvertClientCardToLineString(ClientsData sClient,string Separator) {
 			to_string(sClient.Balance);
 
 }
+
 void SaveClientsDataToFile(vector <ClientsData> &vClients) {
 
 	fstream ClientsFile;
 	string Line;
-	ClientsFile.open(FileName, ios::app);
+	ClientsFile.open(FileName, ios::out);
 
 	if (ClientsFile.is_open())
 	{
 		for (ClientsData &client: vClients)
 		{
-			Line = ConvertClientCardToLineString(client, "#//#");
-			ClientsFile << Line << endl;
+			if (client.DeletedFalg==false)
+			{
+				Line = ConvertClientCardToLineString(client, "#//#");
+				ClientsFile << Line << endl;
+			}
+			
 		}
 	}
-	cout << "Client Saved Successfuly....\n";
 	ClientsFile.close();
 }
 
@@ -37,7 +42,7 @@ vector <string> SplitString(string DataLine, string separator) {
 
 	vector <string> vStrings;
 	int SeparatorIndex;
-	while (SeparatorIndex = DataLine.find(separator) != string::npos)
+	while ((SeparatorIndex = DataLine.find(separator)) != string::npos)
 	{
 		string RecordSplited = DataLine.substr(0, SeparatorIndex);
 
