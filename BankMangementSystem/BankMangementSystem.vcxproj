@@ -126,10 +126,12 @@
     <ClCompile Include="Clients.cpp" />
     <ClCompile Include="File&amp;StringManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clients.h" />
     <ClInclude Include="File&amp;StringManager.h" />
+    <ClInclude Include="MainMenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

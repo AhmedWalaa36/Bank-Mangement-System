@@ -90,8 +90,12 @@ vector <ClientsData> LoadClientsDataFromFile(string FileName){
 	{
 		while (getline(ClientsFile,DataLine)) //getline(object of file, variable to store )
 		{
-			client = ConvertLineStringToClientStruct(DataLine, "#//#");
-			vClients.push_back(client);
+			if (DataLine !="")
+			{
+				client = ConvertLineStringToClientStruct(DataLine, "#//#");
+				vClients.push_back(client);
+			}
+			
 		}
 	}
 	return vClients;

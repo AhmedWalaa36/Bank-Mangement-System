@@ -4,7 +4,6 @@
 #include "File&StringManager.h"
 using namespace std;
 
-ClientsData sClient;
 
 
 bool IsExistAccountNumber(string AccountNumber, vector <ClientsData> &vClients){
@@ -21,6 +20,8 @@ bool IsExistAccountNumber(string AccountNumber, vector <ClientsData> &vClients){
 }
 
 void AddNewClient(vector<ClientsData> &vClients) {
+
+	ClientsData sClient;
 
 	cout << "Please Enter Client Information. \n\n";
 	char AddNewClient = 'n';
@@ -57,7 +58,7 @@ void AddNewClient(vector<ClientsData> &vClients) {
 	} while (AddNewClient=='y'|| AddNewClient=='Y');
 }
 
-void PrintClientData(ClientsData client) {
+void PrintClientData(ClientsData &client) {
 
 	cout << left
 		<< "| " << setw(30) << client.AccountNumber
@@ -69,7 +70,7 @@ void PrintClientData(ClientsData client) {
 		<< endl;
 }
 
-void ShowClientList(vector<ClientsData> vClients) {
+void ShowClientList(vector<ClientsData> &vClients) {
 
 	cout << "\t\t\t\t\tClient List " << "(" << vClients.size() << ")" << " Clients" << endl
 		 <<"------------------------------------------------------------------------------------------------------------------------\n"
@@ -90,7 +91,7 @@ void ShowClientList(vector<ClientsData> vClients) {
 	cout << "------------------------------------------------------------------------------------------------------------------------\n";
 }
 
-void PrintClientCard(ClientsData client) {
+void PrintClientCard(ClientsData &client) {
 	
 	cout << "Account Number  : " << client.AccountNumber << endl;
 	cout << "Pin Code        : " << client.PinCode << endl;
@@ -148,6 +149,7 @@ void DeleteClientByAccountNumber(string AccountNumber, vector<ClientsData> &vCli
 	{
 		cout << "Client Not Found!\n";
 	}
+	vClients = LoadClientsDataFromFile(FileName);
 }
 
 void UpdateClientByAccountNumber(string AccountNumber , vector<ClientsData> &vClients){
