@@ -1,10 +1,12 @@
 #include "RunBankSys.h"
 #include"File&StringManager.h"
+#include"Transactions.h"
 #include<iostream>
 
 
 using namespace std;
 
+enum enMainMenuOption { enShowClientsList=1, enAddNewClient=2, enDeleteClient=3, enUpdateClientInfo=4, enFindClient=5,enTransaction=6, enExit=7};
 
 void ShowMainMenu(){
 
@@ -17,44 +19,45 @@ void ShowMainMenu(){
 		<< "[3] Delete Client.\n"
 		<< "[4] Update Client Info.\n"
 		<< "[5] Find Client.\n"
-		<< "[6] Exit.\n"
+		<< "[6] Transaction.\n"
+		<< "[7] Exit.\n"
 		<< "=========================================\n";
 }
 
 int GetChoiceFromUser() {
 
 	int choice;
-	cout << "Chose What Do You Want From [1 to 6] ? ";
+	cout << "Chose What Do You Want From ? ";
 	cin >> choice;
 	return choice;
 }
 
-void PerformOperation(int Choice, vector<ClientsData> &vClients) {
+void PerformOperation(enMainMenuOption enOption, vector<ClientsData> &vClients) {
 
 	string AccountNumber;
 	struct ClientsData sClient;
 	
-	switch (Choice)
+	switch (enOption)
 	{
-	case 1:
+	case enShowClientsList:
 		ShowClientList(vClients);
 		break;
-	case 2:
+	case enAddNewClient:
 		AddNewClient(vClients);
 		SaveClientsDataToFile(vClients);
 		cout << "Client Saved Successfuly....\n";
 		break;
-	case 3:
+	case enDeleteClient:
 		cout << "Please Enter Account Number :";
 		cin >> AccountNumber;
 		DeleteClientByAccountNumber(AccountNumber, vClients);
 		break;
-	case 4:
+	case enUpdateClientInfo:
 		cout << "Please Enter Account Number :";
 		cin >> AccountNumber;
 		UpdateClientByAccountNumber(AccountNumber, vClients);
 		break;
-	case 5:
+	case enFindClient:
 		cout << "Please Enter Account Number :";
 		cin >> AccountNumber;
 		if (FindClientByAccountNumber(AccountNumber, sClient, vClients))
@@ -66,10 +69,12 @@ void PerformOperation(int Choice, vector<ClientsData> &vClients) {
 			cout << "Client Not Found!";
 		}
 		break;
-		
-
+	case enTransaction:
+		PerformTransactionOperation();
+		vClients = LoadClientsDataFromFile(FileName);
+		break;
 	default:
-		cout << "Please Enter A Correct Choice :";
+		cout << "No Correct Choice :";
 		break;
 	}
 }
@@ -78,22 +83,22 @@ void RunBankSystem() {
 
 
 	vector<ClientsData> vClients = LoadClientsDataFromFile(FileName);
-	int Choice;
+	enMainMenuOption enOption;
 	bool EndProgram = false;
 
 	do
 	{
 
 		ShowMainMenu();
-		Choice = GetChoiceFromUser();
-		if (Choice == 6)
+		enOption = enMainMenuOption(GetChoiceFromUser());
+		if (enOption == enExit)
 		{
 			cout << "\n\t\t\t\t\t################ Program Ends #################\n";
 			EndProgram = true;
 		}
 		else
 		{
-			PerformOperation(Choice, vClients);
+			PerformOperation(enOption, vClients);
 		}
 
 
